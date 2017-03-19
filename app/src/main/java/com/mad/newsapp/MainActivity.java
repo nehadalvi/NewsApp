@@ -10,7 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements GetData.IData,GetImage.IImage{
     int index=0;
@@ -134,6 +137,8 @@ public class MainActivity extends AppCompatActivity implements GetData.IData,Get
     }
 
     public void displayData(ArrayList<News> news){
+
+
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.l1);
 
         linearLayout.removeAllViews();
@@ -147,7 +152,15 @@ public class MainActivity extends AppCompatActivity implements GetData.IData,Get
         linearLayout.addView(tv1);
 
         TextView tv2=new TextView(this);
-        tv2.setText("Published on: "+news.get(index).getPublishedAt());
+        if(news.get(index).getPublishedAt()!=null){
+            String str = news.get(index).getPublishedAt().split("T")[0];
+            /*Date d = new Date(str);
+            SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");*/
+            tv2.setText("Published on: "+ str);
+        }else{
+            tv2.setText("Published on: "+" ");
+        }
+
         linearLayout.addView(tv2);
 
         TextView tv3=new TextView(this);

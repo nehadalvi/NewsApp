@@ -16,9 +16,6 @@ public class News {
     String urlToImage,title,author,description,publishedAt;
 
 
-    SimpleDateFormat date=new SimpleDateFormat("yyyy-MM-dd");
-
-
     public static News createNews(JSONObject newsObject) throws JSONException {
         News news = new News();
         news.setAuthor(newsObject.getString("author"));
